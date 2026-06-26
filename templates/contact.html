@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}Contact & Booking - Puff n' Fleur{% endblock %}
+
+{% block content %}
+    <!-- Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact & Booking</h1>
+            <p>Let's plan your perfect event together</p>
+        </div>
+    </section>
+
+    <!-- Contact Info & Form Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions? We'd love to hear from you. Reach out through any of these channels:</p>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h4>Phone</h4>
+                            <a href="tel:+19432660114">(943) 266-0114</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-content">
+                            <h4>Email</h4>
+                            <a href="mailto:Puffnfleur@gmail.com">Puffnfleur@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4>Location</h4>
+                            <p>Acworth, Georgia USA</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">💬</div>
+                        <div class="info-content">
+                            <h4>Social Media</h4>
+                            <p>
+                                <a href="https://instagram.com/Puff_n_Fleur" target="_blank" rel="noopener noreferrer">Instagram @Puff_n_Fleur</a><br>
+                                <a href="https://facebook.com/Puff-n-Fleur" target="_blank" rel="noopener noreferrer">Facebook Puff n' Fleur</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info-highlight">
+                        <p><strong>Response Time:</strong> We typically respond within 24–48 hours.</p>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="booking-form-wrapper">
+                    <h2>Booking Request</h2>
+                    <form method="POST" class="booking-form" id="bookingForm">
+                        <div class="form-group">
+                            <label for="full_name">Full Name *</label>
+                            <input type="text" id="full_name" name="full_name" required placeholder="Your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event_type">Event Type *</label>
+                                <select id="event_type" name="event_type" required>
+                                    <option value="">Select an event type</option>
+                                    <option value="Birthday">Birthday Party</option>
+                                    <option value="Baby Shower">Baby Shower</option>
+                                    <option value="Wedding">Wedding</option>
+                                    <option value="Corporate">Corporate Event</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="preferred_package">Preferred Package</label>
+                                <select id="preferred_package" name="preferred_package">
+                                    <option value="">Not sure yet</option>
+                                    <option value="Package A">Package A - $270</option>
+                                    <option value="Package B">Package B - $330</option>
+                                    <option value="Package C">Package C - $300</option>
+                                    <option value="Custom">Custom Quote</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="event_date">Event Date *</label>
+                            <input type="date" id="event_date" name="event_date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="event_location">Event Location / City *</label>
+                            <input type="text" id="event_location" name="event_location" required placeholder="City or venue address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additional_notes">Additional Notes / Special Requests</label>
+                            <textarea id="additional_notes" name="additional_notes" rows="4" placeholder="Tell us about your vision, color preferences, themes, or any special requests..."></textarea>
+                        </div>
+
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to be contacted about my booking request</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Submit Booking Request</button>
+                        <p class="form-note">* Required fields. We'll be in touch within 24–48 hours.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-items">
+                <div class="faq-item">
+                    <h3 class="faq-question">How far in advance should I book?</h3>
+                    <p class="faq-answer">We recommend booking at least 2–4 weeks in advance to ensure availability. However, we do our best to accommodate last-minute requests when possible!</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you offer custom packages?</h3>
+                    <p class="faq-answer">Absolutely! Our packages are a starting point. We love working with clients to create custom setups that match their vision and budget. Contact us for a personalized quote.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What areas do you service?</h3>
+                    <p class="faq-answer">We're based in Acworth, Georgia and service the greater Atlanta area. Delivery fees may apply depending on distance. Let us know your location!</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you set up and take down?</h3>
+                    <p class="faq-answer">Yes! Setup and takedown are included in all our packages. We handle everything so you can focus on enjoying your event.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Can you work with my color scheme or theme?</h3>
+                    <p class="faq-answer">Of course! We work with your color palette, theme, and preferences. Share your ideas, inspiration photos, or Pinterest boards with us, and we'll bring it to life.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What's your cancellation policy?</h3>
+                    <p class="faq-answer">Details on our cancellation policy will be discussed during your initial consultation. We're flexible and want to work with you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get package from URL parameter if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const packageParam = urlParams.get('package');
+    if (packageParam) {
+        const packageSelect = document.getElementById('preferred_package');
+        if (packageSelect) {
+            const option = packageSelect.querySelector(`option[value*="${packageParam}"]`);
+            if (option) option.selected = true;
+        }
+    }
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        question.addEventListener('click', function() {
+            item.classList.toggle('active');
+            if (item.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            } else {
+                answer.style.maxHeight = '0';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

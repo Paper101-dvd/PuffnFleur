@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery - Puff n' Fleur{% endblock %}
+
+{% block content %}
+    <!-- Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Gallery</h1>
+            <p>Browse our portfolio of stunning event setups</p>
+        </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section class="gallery-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="birthdays">Birthdays</button>
+                <button class="filter-btn" data-filter="baby-showers">Baby Showers</button>
+                <button class="filter-btn" data-filter="weddings">Weddings</button>
+                <button class="filter-btn" data-filter="corporate">Corporate</button>
+                <button class="filter-btn" data-filter="other">Other</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery">
+        <div class="container">
+            <div class="gallery-grid" id="galleryGrid">
+                {% for item in gallery_items %}
+                    <div class="gallery-item" data-category="{{ item.category }}">
+                        <img src="{{ url_for('static', filename='images/' + item.image) }}" 
+                             alt="{{ item.title }}" 
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 300%22%3E%3Crect fill=%22%23FDE8EF%22 width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23C47A8A%22%3E{{ item.title }}%3C/text%3E%3C/svg%3E'">
+                        <div class="gallery-overlay">
+                            <h3>{{ item.title }}</h3>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Empty State Message (hidden by default) -->
+    <section class="gallery-empty" id="galleryEmpty" style="display: none;">
+        <div class="container">
+            <p>No images found in this category. Check back soon!</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Love What You See?</h2>
+            <p>Contact us to book your perfect event setup</p>
+            <a href="/contact" class="btn btn-primary btn-lg">Get in Touch</a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryGrid = document.getElementById('galleryGrid');
+    const galleryEmpty = document.getElementById('galleryEmpty');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter items
+            let visibleCount = 0;
+            galleryItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.style.display = 'block';
+                    item.classList.add('fade-in');
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('fade-in');
+                }
+            });
+            
+            // Show empty state if no items
+            if (visibleCount === 0) {
+                galleryEmpty.style.display = 'block';
+            } else {
+                galleryEmpty.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
