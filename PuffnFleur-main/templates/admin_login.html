@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login – Puff n' Fleur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #FDE8EF;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 32px rgba(196,122,138,0.15);
+        }
+        .login-logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .login-logo .logo-text {
+            display: inline-block;
+            background: #C47A8A;
+            color: #fff;
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            line-height: 52px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .login-logo h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #2C2C2C;
+        }
+        .login-logo p { color: #888; font-size: 0.85rem; margin-top: 0.25rem; }
+        .alert {
+            background: #fde8ef;
+            border-left: 4px solid #C47A8A;
+            color: #9b4d5f;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+        }
+        label { display: block; font-size: 0.85rem; color: #555; margin-bottom: 0.35rem; }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1.5px solid #e0c8cf;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 1rem;
+        }
+        input:focus { border-color: #C47A8A; }
+        button[type="submit"] {
+            width: 100%;
+            background: #C47A8A;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 0.25rem;
+        }
+        button[type="submit"]:hover { background: #a8606f; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="login-logo">
+            <div class="logo-text">PF</div>
+            <h1>Puff n' Fleur</h1>
+            <p>Admin Dashboard</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required autofocus placeholder="admin">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="••••••••">
+
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>

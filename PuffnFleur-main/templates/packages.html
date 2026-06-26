@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Packages - Puff n' Fleur{% endblock %}
+
+{% block content %}
+    <!-- Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Packages</h1>
+            <p>Choose the perfect package for your special event</p>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages-section">
+        <div class="container">
+            <div class="packages-grid packages-full">
+                {% for package in packages %}
+                    <div class="package-card full-package" id="{{ package.id }}">
+                        <div class="package-image">
+                            <img src="{{ url_for('static', filename='images/' + package.image) }}" 
+                                 alt="{{ package.name }}" 
+                                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23FDE8EF%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%23C47A8A%22%3E{{ package.name }}%3C/text%3E%3C/svg%3E'">
+                        </div>
+                        <div class="package-body">
+                            <h2 class="package-name">{{ package.name }}</h2>
+                            <div class="package-price">
+                                <span class="price-amount">${{ package.price }}</span>
+                                {% if package.delivery %}
+                                    <span class="price-note">+ Delivery</span>
+                                {% endif %}
+                            </div>
+                            <ul class="package-features full-features">
+                                {% for feature in package.features %}
+                                    <li>✓ {{ feature }}</li>
+                                {% endfor %}
+                            </ul>
+                            <a href="/contact?package={{ package.id }}" class="btn btn-primary btn-full">Inquire Now</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title">Package Comparison</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Package A</th>
+                            <th>Package B</th>
+                            <th>Package C</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Price</strong></td>
+                            <td>$270</td>
+                            <td>$330</td>
+                            <td>$300</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backdrop(s)</strong></td>
+                            <td>1 Backdrop</td>
+                            <td>2 Arch Backdrops</td>
+                            <td>1 Backdrop</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Balloon Garland Colors</strong></td>
+                            <td>Up to 3</td>
+                            <td>Up to 3</td>
+                            <td>Up to 3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Custom Sign</strong></td>
+                            <td>✓ Included</td>
+                            <td>✓ Included</td>
+                            <td>✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Character Prop</strong></td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>✓ 3ft–4ft</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Delivery</strong></td>
+                            <td>+ Delivery</td>
+                            <td>+ Delivery</td>
+                            <td>+ Delivery</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Options Section -->
+    <section class="custom-options">
+        <div class="container">
+            <h2 class="section-title">Custom Options</h2>
+            <div class="options-grid">
+                <div class="option-card">
+                    <h3>Additional Backdrop</h3>
+                    <p class="option-price">+$50</p>
+                    <p>Perfect for creating multiple focal points at your event.</p>
+                </div>
+                <div class="option-card">
+                    <h3>Premium Colors</h3>
+                    <p class="option-price">+$25</p>
+                    <p>Upgrade to our exclusive metallic or ombre balloon colors.</p>
+                </div>
+                <div class="option-card">
+                    <h3>Extra Character Props</h3>
+                    <p class="option-price">+$40 each</p>
+                    <p>Add more character props (3ft–4ft) to personalize your setup.</p>
+                </div>
+                <div class="option-card">
+                    <h3>Custom Design</h3>
+                    <p class="option-price">Inquire</p>
+                    <p>Completely custom setups tailored to your unique vision and budget.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Let's Bring Your Vision to Life</h2>
+            <p>Contact us today to discuss your event and get a personalized quote</p>
+            <a href="/contact" class="btn btn-primary btn-lg">Start Your Booking</a>
+        </div>
+    </section>
+{% endblock %}

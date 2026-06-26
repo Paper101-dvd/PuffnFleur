@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Puff n' Fleur - Balloon Styling & Event Planning in Acworth, Georgia. Where Balloons Meet Blooms.">
+    <meta name="keywords" content="balloon styling, event planning, Acworth Georgia, decorations">
+    <meta name="author" content="Puff n' Fleur">
+    <meta property="og:title" content="Puff n' Fleur - Where Balloons Meet Blooms">
+    <meta property="og:description" content="Professional balloon styling and event planning services in Acworth, Georgia.">
+    
+    <title>{% block title %}Puff n' Fleur - Balloon Styling & Event Planning{% endblock %}</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎈</text></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/" class="logo">
+                    <span class="logo-text">PF</span>
+                    <span class="logo-name">Puff n' Fleur</span>
+                </a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/packages" class="nav-link">Packages</a></li>
+                <li><a href="/gallery" class="nav-link">Gallery</a></li>
+                <li><a href="/contact" class="nav-link nav-contact">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" id="flashMessage">
+                    {{ message }}
+                    <button class="alert-close" onclick="this.parentElement.style.display='none';">&times;</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Puff n' Fleur</h3>
+                    <p>"Where Balloons Meet Blooms"</p>
+                    <p class="tagline">Balloon Styling · Event Planning</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>
+                        <a href="tel:+19432660114" class="footer-link">📞 (943) 266-0114</a>
+                    </p>
+                    <p>
+                        <a href="mailto:Puffnfleur@gmail.com" class="footer-link">✉️ Puffnfleur@gmail.com</a>
+                    </p>
+                    <p>📍 Acworth, Georgia USA</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/Puff_n_Fleur" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
+                        <a href="https://facebook.com/Puff-n-Fleur" target="_blank" rel="noopener noreferrer" class="social-link">Facebook</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Puff n' Fleur. All rights reserved. <a href="/admin/login" class="admin-access" aria-label="Admin">•</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="https://wa.me/19432660114?text=Hi%20Puff%20n%27%20Fleur%2C%20I%27m%20interested%20in%20your%20services!" 
+           target="_blank" rel="noopener noreferrer" class="fab whatsapp" title="Chat on WhatsApp">
+            💬
+        </a>
+        <a href="tel:+19432660114" class="fab phone" title="Call us">
+            ☎️
+        </a>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTopBtn" class="back-to-top" title="Back to top">▲</button>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
