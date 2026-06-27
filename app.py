@@ -11,40 +11,48 @@ app.secret_key = 'puffnfleur-secret-key-2024'
 PACKAGES = [
     {
         'id': 'A',
-        'name': 'Package A',
-        'price': 270,
+        'name': 'Basic Package',
+        'price': 350,
         'delivery': True,
         'image': 'package-a.jpg',
         'features': [
-            'One Backdrop (color of your choice)',
+            'One Backdrop: color of your choice',
             'Balloon garland with up to 3 colors',
-            'Custom Happy Birthday Vinyl or LED sign'
+            'Customized Signage',
+            'Bear or 3ft-4ft Character Cutouts',
+            'With or Without Cake stand',
+            'Baby Box'
         ]
     },
     {
         'id': 'B',
-        'name': 'Package B',
-        'price': 330,
+        'name': 'Standard Package',
+        'price': 500,
         'delivery': True,
         'image': 'package-b.jpg',
         'features': [
-            'Two Arch Backdrop (color of your choice)',
+            'Two Backdrop: color of your choice',
             'Balloon garland with up to 3 colors',
-            'Custom Happy Birthday Vinyl or LED sign'
+            'Customized Signage',
+            'Bear or 3ft-4ft Character Cutouts',
+            'With or Without Cake Stand',
+            'Baby Box'
         ]
     },
     {
         'id': 'C',
-        'name': 'Package C',
-        'price': 300,
+        'name': 'Deluxe Package',
+        'price': 800,
         'delivery': True,
         'image': 'package-c.jpg',
         'features': [
-            'One Backdrop (color of your choice)',
-            'Balloon garland with up to 3 colors',
-            'Custom Happy Birthday Vinyl or LED sign',
-            'One character prop (3ft–4ft)',
-            '+$50 for additional backdrop'
+            '3 Premium Backdrop: color of your choice',
+            'Balloon garland with up to 4 colors',
+            'Customized Signage',
+            'Bear or 3ft-4ft Character Cutouts',
+            'Cake Stand',
+            'Baby Box',
+            '#1 Marquee Standee'
         ]
     }
 ]
