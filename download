@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Puff n' Fleur{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="petal-animation"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Puff n' Fleur</h1>
+                <p class="hero-tagline">Where Balloons Meet Blooms</p>
+                <p class="hero-subtitle">Premium Balloon Styling & Event Planning</p>
+                <a href="/contact" class="btn btn-primary btn-lg">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Welcome to Puff n' Fleur, your premier destination for balloon styling and event planning in Acworth, Georgia. 
+                        We transform ordinary moments into extraordinary memories through creative balloon designs and thoughtful event coordination.
+                    </p>
+                    <p>
+                        Our team is dedicated to bringing your vision to life with elegance, attention to detail, and a passion for celebration.
+                        Whether it's a intimate birthday party or a grand corporate event, we're here to make it unforgettable.
+                    </p>
+                </div>
+                <div class="about-highlight">
+                    <div class="highlight-card">
+                        <div class="highlight-number">500+</div>
+                        <div class="highlight-text">Events Styled</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-number">100%</div>
+                        <div class="highlight-text">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Preview Section -->
+    <section class="packages-preview">
+        <div class="container">
+            <h2 class="section-title">Our Packages</h2>
+            <div class="packages-grid">
+                {% for package in packages %}
+                    <div class="package-card">
+                        <div class="package-image">
+                            <img src="{{ url_for('static', filename='images/' + package.image) }}" 
+                                 alt="{{ package.name }}" 
+                                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23FDE8EF%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%23C47A8A%22%3E{{ package.name }}%3C/text%3E%3C/svg%3E'">
+                        </div>
+                        <div class="package-body">
+                            <h3 class="package-name">{{ package.name }}</h3>
+                            <div class="package-price">
+                                ${{ package.price }} <span class="price-note">+ Delivery</span>
+                            </div>
+                            <ul class="package-features">
+                                {% for feature in package.features[:2] %}
+                                    <li>✓ {{ feature }}</li>
+                                {% endfor %}
+                                {% if package.features|length > 2 %}
+                                    <li class="feature-more">+ {{ package.features|length - 2 }} more features</li>
+                                {% endif %}
+                            </ul>
+                            <a href="/packages#{{ package.id }}" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="/packages" class="btn btn-outline">View All Packages</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                {% for testimonial in testimonials %}
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            {% for i in range(testimonial.rating) %}★{% endfor %}
+                        </div>
+                        <p class="testimonial-text">{{ testimonial.text }}</p>
+                        <div class="testimonial-author">
+                            <strong>{{ testimonial.name }}</strong>
+                            <small>{{ testimonial.event }}</small>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Plan Your Event?</h2>
+            <p>Let's create something magical together!</p>
+            <a href="/contact" class="btn btn-primary btn-lg">Get Started</a>
+        </div>
+    </section>
+{% endblock %}

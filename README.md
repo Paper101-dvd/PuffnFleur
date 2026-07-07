@@ -18,7 +18,9 @@ Puff n' Fleur is a modern, responsive website that allows visitors to:
 - **Modern Aesthetic**: Soft, elegant, feminine design with custom brand colors
 - **Service Packages**: Display of 3 curated packages (A, B, C) with full feature lists
 - **Gallery**: Filterable image gallery with categories (Birthdays, Baby Showers, Weddings, Corporate, Other)
-- **Booking System**: Complete inquiry form that saves submissions to CSV
+- **Booking System**: Complete inquiry form that saves submissions to a SQLite database (and a CSV backup)
+- **Accounts**: Combined Login/Register page (`/login`, `/register`) backed by a `users` table, with hashed passwords and field validation
+- **Booking Records Page**: A login-protected `/admin/bookings` page that reads and lists every booking stored in the database
 - **Contact Info**: Multiple contact methods (Phone, Email, Social Media, WhatsApp)
 - **FAQ Section**: Common questions answered on the contact page
 - **Floating Action Buttons**: Quick access to WhatsApp and phone call
@@ -69,6 +71,8 @@ Puff n' Fleur is a modern, responsive website that allows visitors to:
 
 5. **Open in browser**:
    Navigate to `http://localhost:5000`
+
+> The SQLite database (`puffnfleur.db`) is created automatically on first run — no manual setup needed. It contains a `users` table (from Register) and a `bookings` table (from the booking form / `/admin/bookings` page). Register an account at `/register`, then log in at `/login` to view submitted bookings at `/admin/bookings`.
 
 ## 📁 Project Structure
 

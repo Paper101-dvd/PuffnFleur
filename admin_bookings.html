@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Packages - Puff n' Fleur{% endblock %}
+
+{% block content %}
+    <!-- Header -->
+    <section class="page-header packages-header">
+        <div class="container">
+            <h1>Puff n' Fleur</h1>
+            <p>Curated event packages with beautiful balloon styling</p>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages-section">
+        <div class="packages-watermark">PF</div>
+        <div class="container">
+            <div class="package-tier">
+                <div class="package-image package-image-large">
+                    <img src="{{ url_for('static', filename='images/' + packages[0].image) }}" alt="{{ packages[0].name }}">
+                </div>
+                <div class="package-details">
+                    <span class="package-label">Basic Package</span>
+                    <h2>{{ packages[0].name }}</h2>
+                    <p class="package-price-large">${{ packages[0].price }} <span>+ Delivery</span></p>
+                    <ul class="package-features">
+                        {% for feature in packages[0].features %}
+                            <li>✓ {{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-tier reverse">
+                <div class="package-image package-image-large">
+                    <img src="{{ url_for('static', filename='images/' + packages[1].image) }}" alt="{{ packages[1].name }}">
+                </div>
+                <div class="package-details">
+                    <span class="package-label">Standard Package</span>
+                    <h2>{{ packages[1].name }}</h2>
+                    <p class="package-price-large">${{ packages[1].price }} <span>+ Delivery</span></p>
+                    <ul class="package-features">
+                        {% for feature in packages[1].features %}
+                            <li>✓ {{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-tier">
+                <div class="package-image package-image-large">
+                    <img src="{{ url_for('static', filename='images/' + packages[2].image) }}" alt="{{ packages[2].name }}">
+                </div>
+                <div class="package-details">
+                    <span class="package-label">Deluxe Package</span>
+                    <h2>{{ packages[2].name }}</h2>
+                    <p class="package-price-large">${{ packages[2].price }} <span>+ Delivery</span></p>
+                    <ul class="package-features">
+                        {% for feature in packages[2].features %}
+                            <li>✓ {{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title">Package Comparison</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Basic</th>
+                            <th>Standard</th>
+                            <th>Deluxe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Price</strong></td>
+                            <td>$350</td>
+                            <td>$500</td>
+                            <td>$800</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backdrop(s)</strong></td>
+                            <td>1 Backdrop</td>
+                            <td>2 Backdrops</td>
+                            <td>3 Premium Backdrops</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Balloon Garland Colors</strong></td>
+                            <td>Up to 3</td>
+                            <td>Up to 3</td>
+                            <td>Up to 4</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Custom Signage</strong></td>
+                            <td>✓ Included</td>
+                            <td>✓ Included</td>
+                            <td>✓ Included</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Character Props</strong></td>
+                            <td>Bear or 3ft-4ft Cutouts</td>
+                            <td>Bear or 3ft-4ft Cutouts</td>
+                            <td>Bear or 3ft-4ft Cutouts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cake Stand</strong></td>
+                            <td>Optional</td>
+                            <td>Optional</td>
+                            <td>Included</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Baby Box</strong></td>
+                            <td>Included</td>
+                            <td>Included</td>
+                            <td>Included</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Marquee Standee</strong></td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Included</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Options Section -->
+    <section class="custom-options">
+        <div class="container">
+            <h2 class="section-title">Custom Options</h2>
+            <div class="options-grid">
+                <div class="option-card">
+                    <h3>Additional Backdrop</h3>
+                    <p class="option-price">+$50</p>
+                    <p>Perfect for creating multiple focal points at your event.</p>
+                </div>
+                <div class="option-card">
+                    <h3>Premium Colors</h3>
+                    <p class="option-price">+$25</p>
+                    <p>Upgrade to our exclusive metallic or ombre balloon colors.</p>
+                </div>
+                <div class="option-card">
+                    <h3>Extra Character Props</h3>
+                    <p class="option-price">+$40 each</p>
+                    <p>Add more character props (3ft–4ft) to personalize your setup.</p>
+                </div>
+                <div class="option-card">
+                    <h3>Custom Design</h3>
+                    <p class="option-price">Inquire</p>
+                    <p>Completely custom setups tailored to your unique vision and budget.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Let's Bring Your Vision to Life</h2>
+            <p>Contact us today to discuss your event and get a personalized quote</p>
+            <a href="/contact" class="btn btn-primary btn-lg">Start Your Booking</a>
+        </div>
+    </section>
+{% endblock %}
