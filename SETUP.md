@@ -30,13 +30,40 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Step 4: Run the Application
+### Step 4: Configure the Database
+This project is configured for **MySQL**. The `.env` file already included in this zip points at a local MySQL database — you just need to create that database and user on your own machine.
+
+**Install MySQL** if you don't have it:
+- Windows/Mac: [MySQL Community Server](https://dev.mysql.com/downloads/mysql/) or use XAMPP/WAMP
+- Linux: `sudo apt install mysql-server`
+
+**Create the database and user** (run in a MySQL shell, e.g. `mysql -u root -p`):
+```sql
+CREATE DATABASE puffnfleur CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'puffnfleur_user'@'localhost' IDENTIFIED BY 'PuffnFleur2026!';
+GRANT ALL PRIVILEGES ON puffnfleur.* TO 'puffnfleur_user'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+This matches the `DATABASE_URL` already in `.env`:
+```
+DATABASE_URL=mysql+pymysql://puffnfleur_user:PuffnFleur2026!@localhost:3306/puffnfleur
+```
+Change the username/password/host in both places if you'd rather use different credentials. Flask creates the `users` and `bookings` tables automatically the first time you run the app — no manual `CREATE TABLE` needed.
+
+**Migrating old CSV bookings (optional):** if you have a `bookings.csv.legacy` file with old submissions, import it once with:
+```bash
+python migrate_csv_to_db.py bookings.csv.legacy
+```
+
+### Step 5: Run the Application
 ```bash
 python app.py
 ```
 
-### Step 5: Open in Browser
-Navigate to: **http://localhost:5000**
+### Step 6: Open in Browser
+- Public site: **http://localhost:5000**
+- Admin (Register / Login / Bookings CRUD): **http://localhost:5000/admin**
 
 ---
 
@@ -44,32 +71,34 @@ Navigate to: **http://localhost:5000**
 
 ```
 puffnfleur/
-├── app.py                 ← Flask application (main entry point)
-├── requirements.txt       ← Python dependencies
-├── bookings.csv          ← Booking submissions (auto-generated)
-├── setup.bat             ← Windows setup script
-├── setup.sh              ← macOS/Linux setup script
-├── .env.example          ← Environment variables template
-├── .gitignore            ← Git ignore file
-├── README.md             ← Full documentation
-├── SETUP.md              ← This file
-│
-├── .vscode/
-│   └── settings.json     ← VS Code configuration
+├── app.py                    ← Flask application (routes + JSON API)
+├── models.py                 ← SQLAlchemy models (User, Booking)
+├── migrate_csv_to_db.py      ← One-time CSV -> database import script
+├── requirements.txt          ← Python dependencies
+├── bookings.csv.legacy       ← Old CSV data (pre-database), for migration only
+├── setup.bat                 ← Windows setup script
+├── setup.sh                  ← macOS/Linux setup script
+├── .env.example               ← Environment variables template (incl. DATABASE_URL)
+├── .gitignore                ← Git ignore file
+├── README.md                  ← Full documentation
+├── SETUP.md                  ← This file
 │
 ├── static/
 │   ├── css/
-│   │   └── style.css     ← Main stylesheet
+│   │   ├── style.css         ← Main site stylesheet
+│   │   └── admin.css         ← Admin SPA stylesheet
 │   ├── js/
-│   │   └── main.js       ← JavaScript interactivity
-│   └── images/           ← Place images here
+│   │   ├── main.js           ← Public site JavaScript
+│   │   └── admin-app.js      ← Vue.js admin app (login, register, bookings CRUD)
+│   └── images/               ← Place images here
 │
 └── templates/
-    ├── base.html         ← Base template
-    ├── index.html        ← Home page
-    ├── packages.html     ← Service packages
-    ├── gallery.html      ← Event gallery
-    └── contact.html      ← Contact & booking form
+    ├── base.html             ← Base template (public site)
+    ├── index.html            ← Home page
+    ├── packages.html         ← Service packages
+    ├── gallery.html          ← Event gallery
+    ├── contact.html          ← Contact & booking form
+    └── admin_spa.html        ← Admin SPA shell (mounts the Vue app)
 ```
 
 ---
@@ -156,20 +185,17 @@ Edit `app.py` in the TESTIMONIALS list:
 
 ---
 
-## Form Submissions
+## Form Submissions & Admin CRUD
 
-All booking form submissions are saved to `bookings.csv` with:
+Booking form submissions are saved to the database (`bookings` table) with:
 - Timestamp
 - Customer name, email, phone
 - Event details (type, date, location)
 - Package preference
 - Special requests
+- Status (new / contacted / confirmed / cancelled)
 
-You can open `bookings.csv` with:
-- Excel
-- Google Sheets
-- Any text editor
-- Python scripts for processing
+Visit **http://localhost:5000/admin** to register an admin account, log in, and manage bookings — create new ones manually, edit existing ones (including status), search/filter, and delete. This is the CRUD page for the project.
 
 ---
 

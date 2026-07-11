@@ -38,6 +38,7 @@ Puff n' Fleur is a modern, responsive website that allows visitors to:
 ### Prerequisites
 - Python 3.8 or higher
 - pip (Python package manager)
+- MySQL Server (see SETUP.md for install + database creation steps)
 
 ### Installation
 
@@ -144,11 +145,19 @@ puffnfleur/
 | `/packages` | GET | Service packages |
 | `/gallery` | GET | Event gallery |
 | `/contact` | GET | Booking form display |
-| `/contact` | POST | Handle form submission, save to CSV |
+| `/contact` | POST | Handle form submission, save to database |
+| `/admin` | GET | Vue.js admin SPA (login, registration, bookings CRUD) |
+| `/api/auth/register` | POST | Create an admin account |
+| `/api/auth/login` | POST | Log in, starts a session |
+| `/api/auth/logout` | POST | Log out, clears the session |
+| `/api/auth/me` | GET | Current logged-in user, if any |
+| `/api/bookings` | GET | List bookings (supports `search`, `event_type`, `package` filters) — auth required |
+| `/api/bookings` | POST | Create a booking — auth required |
+| `/api/bookings/<id>` | GET/PUT/DELETE | Read, update, or delete a single booking — auth required |
 
 ## 💾 Booking Data
 
-Booking form submissions are automatically saved to `bookings.csv` with the following fields:
+Booking form submissions are automatically saved to the database (`bookings` table) with the following fields:
 - Timestamp
 - Full Name
 - Email
@@ -158,6 +167,14 @@ Booking form submissions are automatically saved to `bookings.csv` with the foll
 - Event Date
 - Event Location
 - Additional Notes
+- Status (new / contacted / confirmed / cancelled)
+
+## 🔐 Admin Panel (Auth + CRUD)
+
+Visit `/admin` for the Vue.js-powered admin panel:
+- **Register** a new admin account (hashed password, stored in the `users` table)
+- **Log in** with session-based authentication
+- **Manage bookings**: create, view/search/filter, edit (including status), and delete — full CRUD backed by the JSON API under `/api/bookings`
 
 ## 🎯 Business Information
 
@@ -287,10 +304,12 @@ Edit `PACKAGES` list in `app.py` to add more service packages
 
 ## 📚 Technologies Used
 
-- **Backend**: Flask 2.3.3 (Python web framework)
-- **Frontend**: HTML5, CSS3, JavaScript (ES6)
+- **Backend**: Flask 2.3.3 (Python web framework) + SQLAlchemy ORM
+- **Database**: PostgreSQL or MySQL (SQLite fallback for local dev)
+- **Admin Front-end**: Vue.js 3 single-page app (login, registration, bookings CRUD) — see `/admin`
+- **Public Front-end**: HTML5, CSS3, JavaScript (ES6), Jinja2 templates
+- **Auth**: Session-based login with hashed passwords (Werkzeug security)
 - **Fonts**: Google Fonts (Cormorant Garamond, Lato, Dancing Script, Playfair Display)
-- **Data Storage**: CSV (for booking submissions)
 - **Styling**: Custom CSS with responsive design
 
 ## 📞 Support

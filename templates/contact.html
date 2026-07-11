@@ -96,12 +96,17 @@
                                 <label for="preferred_package">Preferred Package</label>
                                 <select id="preferred_package" name="preferred_package">
                                     <option value="">Not sure yet</option>
-                                    <option value="Package A">Package A - $270</option>
-                                    <option value="Package B">Package B - $330</option>
-                                    <option value="Package C">Package C - $300</option>
+                                    {% for package in packages %}
+                                        <option value="{{ package.name }}" data-id="{{ package.id }}">{{ package.name }} - ${{ package.price }}</option>
+                                    {% endfor %}
                                     <option value="Custom">Custom Quote</option>
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="form-group" id="customPackageGroup" style="display:none;">
+                            <label for="custom_package_details">Tell us what you'd like in your custom package</label>
+                            <textarea id="custom_package_details" name="custom_package_details" rows="3" placeholder="Colors, backdrop style, props, balloon garland size, budget range, etc."></textarea>
                         </div>
 
                         <div class="form-group">
@@ -175,14 +180,24 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Get package from URL parameter if present
+    const packageSelect = document.getElementById('preferred_package');
+    const customGroup = document.getElementById('customPackageGroup');
+
     const urlParams = new URLSearchParams(window.location.search);
     const packageParam = urlParams.get('package');
-    if (packageParam) {
-        const packageSelect = document.getElementById('preferred_package');
-        if (packageSelect) {
-            const option = packageSelect.querySelector(`option[value*="${packageParam}"]`);
-            if (option) option.selected = true;
-        }
+    if (packageParam && packageSelect) {
+        const option = packageSelect.querySelector(`option[data-id="${packageParam}"]`);
+        if (option) option.selected = true;
+    }
+
+    // Show the "describe your custom package" field only when Custom Quote is picked
+    function toggleCustomField() {
+        if (!packageSelect || !customGroup) return;
+        customGroup.style.display = packageSelect.value === 'Custom' ? '' : 'none';
+    }
+    if (packageSelect) {
+        toggleCustomField();
+        packageSelect.addEventListener('change', toggleCustomField);
     }
 
     // FAQ Accordion
