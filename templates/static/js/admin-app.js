@@ -418,7 +418,17 @@ createApp({
             <div class="two-col">
               <div class="field">
                 <label>Event Type</label>
-                <input v-model="form.event_type" required placeholder="Birthday, Wedding, etc." />
+                <select v-model="form.event_type" required>
+                  <option value="">Select an event type</option>
+                  <option value="Birthday">Birthday Party</option>
+                  <option value="Baby Shower">Baby Shower</option>
+                  <option value="Wedding">Wedding</option>
+                  <option value="Graduation">Graduation Party</option>
+                  <option value="Corporate">Corporate Event</option>
+                  <option value="Family Gathering">Family Gathering</option>
+                  <option value="Holiday Party">Holiday Party</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
               <div class="field">
                 <label>Preferred Package</label>

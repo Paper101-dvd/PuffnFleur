@@ -35,7 +35,7 @@ with app.app_context():
     if Package.query.count() == 0:
         defaults = [
             {
-                "id": "A", "name": "Package A", "price": 270, "delivery": True, "image": "package-a.jpg",
+                "id": "A", "name": "Basic", "price": 270, "delivery": True, "image": "basic.jpg",
                 "sort_order": 1,
                 "features": [
                     "One Backdrop (color of your choice)",
@@ -44,7 +44,7 @@ with app.app_context():
                 ],
             },
             {
-                "id": "B", "name": "Package B", "price": 330, "delivery": True, "image": "package-b.jpg",
+                "id": "B", "name": "Standard", "price": 330, "delivery": True, "image": "standard.jfif",
                 "sort_order": 2,
                 "features": [
                     "Two Arch Backdrop (color of your choice)",
@@ -53,7 +53,7 @@ with app.app_context():
                 ],
             },
             {
-                "id": "C", "name": "Package C", "price": 300, "delivery": True, "image": "package-c.jpg",
+                "id": "C", "name": "Deluxe", "price": 300, "delivery": True, "image": "deluxe.png",
                 "sort_order": 3,
                 "features": [
                     "One Backdrop (color of your choice)",
