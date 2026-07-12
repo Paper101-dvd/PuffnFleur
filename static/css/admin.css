@@ -38,15 +38,16 @@ body {
 .auth-logo { text-align: center; margin-bottom: 1.5rem; }
 .auth-logo .badge {
     display: inline-block;
-    background: var(--color-primary);
-    color: #fff;
     width: 52px; height: 52px;
     border-radius: 50%;
-    line-height: 52px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
     margin-bottom: .5rem;
+    overflow: hidden;
+    background: var(--color-primary);
+}
+.auth-logo .badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .auth-logo h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
 .auth-logo p { color: #888; font-size: .85rem; margin-top: .25rem; }

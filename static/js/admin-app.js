@@ -257,7 +257,7 @@ createApp({
     <div v-else-if="view === 'login'" class="auth-wrap">
       <div class="auth-card">
         <div class="auth-logo">
-          <div class="badge">PF</div>
+          <div class="badge"><img src="/static/images/logo.png" alt="Puff n' Fleur Logo"></div>
           <h1>Puff n' Fleur</h1>
           <p>Admin Sign In</p>
         </div>
@@ -281,7 +281,7 @@ createApp({
     <div v-else-if="view === 'register'" class="auth-wrap">
       <div class="auth-card">
         <div class="auth-logo">
-          <div class="badge">PF</div>
+          <div class="badge"><img src="/static/images/logo.png" alt="Puff n' Fleur Logo"></div>
           <h1>Create Admin Account</h1>
           <p>Puff n' Fleur</p>
         </div>
