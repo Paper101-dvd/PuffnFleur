@@ -28,11 +28,54 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 with app.app_context():
-    db.create_all()
+    try:
+        db.create_all()
+    except Exception as exc:
+        app.logger.warning(f"Database initialization warning: {exc}")
 
-    # Seed default packages once, the first time the app runs against an
-    # empty database. After that, prices/features are managed from /admin.
-    if Package.query.count() == 0:
+    try:
+        # Seed default packages once, the first time the app runs against an
+        # empty database. After that, prices/features are managed from /admin.
+        if Package.query.count() == 0:
+            defaults = [
+                {
+                    "id": "A", "name": "Basic", "price": 270, "delivery": True, "image": "basic.jpg",
+                    "sort_order": 1,
+                    "features": [
+                        "One Backdrop (color of your choice)",
+                        "Balloon garland with up to 3 colors",
+                        "Custom Happy Birthday Vinyl or LED sign",
+                    ],
+                },
+                {
+                    "id": "B", "name": "Standard", "price": 330, "delivery": True, "image": "standard.jfif",
+                    "sort_order": 2,
+                    "features": [
+                        "Two Arch Backdrop (color of your choice)",
+                        "Balloon garland with up to 3 colors",
+                        "Custom Happy Birthday Vinyl or LED sign",
+                    ],
+                },
+                {
+                    "id": "C", "name": "Deluxe", "price": 300, "delivery": True, "image": "deluxe.png",
+                    "sort_order": 3,
+                    "features": [
+                        "One Backdrop (color of your choice)",
+                        "Balloon garland with up to 3 colors",
+                        "Custom Happy Birthday Vinyl or LED sign",
+                        "One character prop (3ft-4ft)",
+                        "+$50 for additional backdrop",
+                    ],
+                },
+            ]
+            for d in defaults:
+                pkg = Package(id=d["id"], name=d["name"], price=d["price"],
+                               delivery=d["delivery"], image=d["image"], sort_order=d["sort_order"])
+                pkg.features = d["features"]
+                db.session.add(pkg)
+            db.session.commit()
+    except Exception as exc:
+        app.logger.warning(f"Package seeding warning: {exc}")
         defaults = [
             {
                 "id": "A", "name": "Basic", "price": 270, "delivery": True, "image": "basic.jpg",
@@ -128,14 +171,18 @@ def packages():
 @app.route("/gallery")
 def gallery():
     gallery_items = [
-        {"id": 1, "title": "Birthday Celebration", "category": "birthdays", "image": "gallery-1.jpg"},
-        {"id": 2, "title": "Baby Shower Bliss", "category": "baby-showers", "image": "gallery-2.jpg"},
-        {"id": 3, "title": "Wedding Elegance", "category": "weddings", "image": "gallery-3.jpg"},
-        {"id": 4, "title": "Corporate Event", "category": "corporate", "image": "gallery-4.jpg"},
-        {"id": 5, "title": "Party Perfection", "category": "birthdays", "image": "gallery-5.jpg"},
-        {"id": 6, "title": "Shower Magic", "category": "baby-showers", "image": "gallery-6.jpg"},
-        {"id": 7, "title": "Special Occasion", "category": "other", "image": "gallery-7.jpg"},
-        {"id": 8, "title": "Dream Setup", "category": "weddings", "image": "gallery-8.jpg"},
+        {"id": 1, "title": "Birthday Celebration", "category": "birthdays", "image": "Birthday.jfif"},
+        {"id": 2, "title": "Birthday Party", "category": "birthdays", "image": "Birthday2.jfif"},
+        {"id": 3, "title": "Birthday Fun", "category": "birthdays", "image": "Birthday3.jpg"},
+        {"id": 4, "title": "Baby Shower Bliss", "category": "baby-showers", "image": "baby shower bliss.jpg"},
+        {"id": 5, "title": "Bridal Shower", "category": "weddings", "image": "Bridal Shower.jpg"},
+        {"id": 6, "title": "Corporate Event", "category": "corporate", "image": "corporate event.png"},
+        {"id": 7, "title": "Graduation Party", "category": "other", "image": "graduation.jpg"},
+        {"id": 8, "title": "Graduation Celebration", "category": "other", "image": "graduation2.jpg"},
+        {"id": 9, "title": "Dream Setup", "category": "other", "image": "Dreamsetup.jfif"},
+        {"id": 10, "title": "Special Occasion", "category": "other", "image": "special occassion.jfif"},
+        {"id": 11, "title": "Special Event", "category": "other", "image": "special occassion2.jpg"},
+        {"id": 12, "title": "Shower Magic", "category": "baby-showers", "image": "shower magic.png"},
     ]
     return render_template("gallery.html", gallery_items=gallery_items)
 

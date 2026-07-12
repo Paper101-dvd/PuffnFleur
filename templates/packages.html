@@ -25,7 +25,7 @@
                         <div class="package-body">
                             <h2 class="package-name">{{ package.name }}</h2>
                             <div class="package-price">
-                                <span class="price-amount">${{ package.price }}</span>
+                                <span class="price-amount">${{ package.price|int }}</span>
                                 {% if package.delivery %}
                                     <span class="price-note">+ Delivery</span>
                                 {% endif %}

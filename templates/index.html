@@ -30,6 +30,19 @@
         </div>
     </section>
 
+    <section class="feature-banner">
+        <div class="container">
+            <div class="feature-card">
+                <div>
+                    <p class="eyebrow">New this season</p>
+                    <h2>Elevated setups for birthdays, baby showers, and unforgettable celebrations</h2>
+                    <p>From dreamy pastel arches to statement centerpieces, every design is tailored to your event style and guest experience.</p>
+                </div>
+                <a href="/gallery" class="btn btn-primary">See Recent Designs</a>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section class="about">
         <div class="container">
@@ -74,7 +87,7 @@
                         <div class="package-body">
                             <h3 class="package-name">{{ package.name }}</h3>
                             <div class="package-price">
-                                ${{ package.price }} <span class="price-note">+ Delivery</span>
+                                ${{ package.price|int }} <span class="price-note">+ Delivery</span>
                             </div>
                             <ul class="package-features">
                                 {% for feature in package.features[:2] %}
