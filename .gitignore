@@ -69,4 +69,4 @@ bookings.csv.legacy
 migrate_csv_to_db.py
 
 # Deployment configs (optional - can be committed if desired)
-railway.json
+# railway.json
