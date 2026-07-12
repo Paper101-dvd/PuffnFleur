@@ -56,3 +56,14 @@ htmlcov/
 
 # Misc
 *.log
+
+# Database/MySQL related files
+*.sql
+query
+temp_check_mysql.py
+xampp_mysql_repair.bat
+
+# CSV files (legacy)
+bookings.csv
+bookings.csv.legacy
+migrate_csv_to_db.py
