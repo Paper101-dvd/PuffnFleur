@@ -192,12 +192,12 @@ Visit `/admin` for the Vue.js-powered admin panel:
 - Balloon garland with up to 3 colors
 - Custom Happy Birthday Vinyl or LED sign
 
-### Package B – $330 + Delivery
+### Package B – $300 + Delivery
 - Two Arch Backdrop (color of your choice)
 - Balloon garland with up to 3 colors
 - Custom Happy Birthday Vinyl or LED sign
 
-### Package C – $300 + Delivery
+### Package C – $330 + Delivery
 - One Backdrop (color of your choice)
 - Balloon garland with up to 3 colors
 - Custom Happy Birthday Vinyl or LED sign
